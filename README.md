@@ -1,5 +1,7 @@
 # Digestive System — Interactive 3D Learning Lab
 
+**Live:** https://digestive-anatomy-lab.vercel.app
+
 A realistic, interactive 3D human digestive system for secondary-school and first-year biology:
 
 - **Real look.** The organs as they look in a specimen: glistening pink-grey oesophagus and stomach, pink-tan small intestine, greyish-pink colon, red-brown liver, green gallbladder and pale pancreas. "Colour" switches to **Organs** to give each organ its own colour.
@@ -51,6 +53,10 @@ node tools/validate-assets.mjs
 ```
 
 Both steps are deterministic, and every input and the output are hashed in `src/digestive/generated/provenance.json`. `tools/inspect-sources.mjs` lists the official files' nodes and checks them against the united body.
+
+## Deploy
+
+The site is a Vercel project (Vite preset, output `dist/`) connected to [github.com/Niyaz-05/digestive-anatomy-lab](https://github.com/Niyaz-05/digestive-anatomy-lab). Every push to `main` deploys to https://digestive-anatomy-lab.vercel.app; pushes to other branches get preview URLs.
 
 ## Layout
 

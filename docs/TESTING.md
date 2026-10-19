@@ -43,6 +43,7 @@ Results recorded on 2026-10-19 on Windows 11, Node 22.14.0, headless Chromium (P
 | Determinism | **Pass**: re-extraction gives the recorded unbaked sha256 (`d30b73ad060c…`) and re-baking the recorded final sha256 (`6f8dae786587…`) |
 | `npm run build` | **Pass**. JS bundle about 1.44 MB (about 400 kB gzip); Vite warns about chunk size |
 | `npm run e2e` | **Pass**: 17/17 in 9.0 min (Digestion 58 s, tour 2.2 min) |
+| Live site (2026-10-19) | **Pass**: https://digestive-anatomy-lab.vercel.app returns the page; `models/digestive.glb` is served with the recorded sha256 `6f8dae786587…`; the model renders in headless Chromium with no console errors |
 
 ## Defects found and fixed during QA
 
