@@ -139,13 +139,16 @@ test('the cut opens the organs and can be moved and turned off', async ({ page }
   const canvas = page.locator('.viewer canvas');
   const whole = await canvas.screenshot();
   await radio(page, 'Front').click();
+  // The camera turns to face the cut, and the panel says what is kept.
+  await expect(page.locator('[aria-label="Camera views"] button', { hasText: /^Front$/ })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.slice-hint')).toHaveText('Showing the back half');
   await page.getByLabel('Cut position').fill('0.05');
   await settle(page, 2500);
   expect(Buffer.compare(whole, await canvas.screenshot())).not.toBe(0);
   await page.screenshot({ path: `${SHOTS}/07-cut-coronal.png` });
   await radio(page, 'Top').click();
+  await expect(page.locator('[aria-label="Camera views"] button', { hasText: /^Top$/ })).toHaveAttribute('aria-pressed', 'true');
   await page.getByLabel('Cut position').fill('0.3');
-  await page.getByRole('button', { name: 'Top', exact: true }).click();
   await settle(page, 2500);
   await page.screenshot({ path: `${SHOTS}/08-cut-axial.png` });
   await radio(page, 'Off').click();

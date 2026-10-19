@@ -128,6 +128,30 @@ export function isVisible(def: SimulationDefinition, state: LabState, id: string
   return state.visibleLayers.has(s.layer);
 }
 
+/**
+ * The camera preset that looks at the cut face. The cut keeps the side below the plane on its axis
+ * (x: the patient's right, z: the back, y: the lower part), or the side above it when flipped, so
+ * the camera looks from the removed side.
+ */
+export function facingPreset(slice: Slice): string | null {
+  switch (slice.axis) {
+    case 'sagittal': return slice.flip ? 'right' : 'left';
+    case 'coronal': return slice.flip ? 'posterior' : 'anterior';
+    case 'axial': return slice.flip ? 'inferior' : 'superior';
+    default: return null;
+  }
+}
+
+/** What the cut leaves in view, for the panel's hint. */
+export function keptHalf(slice: Slice): string | null {
+  switch (slice.axis) {
+    case 'sagittal': return slice.flip ? 'the left half (patient’s left)' : 'the right half (patient’s right)';
+    case 'coronal': return slice.flip ? 'the front half' : 'the back half';
+    case 'axial': return slice.flip ? 'the upper half' : 'the lower half';
+    default: return null;
+  }
+}
+
 export function makeReducer(def: SimulationDefinition) {
   const known = new Set(def.structures.map((s) => s.id));
   const layers = new Set(def.layers.map((l) => l.id));
@@ -160,7 +184,12 @@ export function makeReducer(def: SimulationDefinition) {
         const axis = action.axis ?? state.slice.axis;
         // Choosing a new axis starts the cut in the middle.
         const fresh = action.axis !== undefined && action.axis !== state.slice.axis && action.at === undefined;
-        return { ...state, slice: { axis, at: fresh ? 0 : at, flip: action.flip ?? state.slice.flip } };
+        const slice = { axis, at: fresh ? 0 : at, flip: action.flip ?? state.slice.flip };
+        // A new axis or a flip turns the camera to face the cut, from the side the cut removed.
+        const turned = axis !== 'off' && (axis !== state.slice.axis || slice.flip !== state.slice.flip);
+        const preset = facingPreset(slice);
+        if (!turned || !preset || !presets.has(preset)) return { ...state, slice };
+        return { ...state, slice, camera: { preset, focus: [], nonce: state.camera.nonce + 1 } };
       }
       case 'set-mode': {
         if (action.mode === state.mode) return state;

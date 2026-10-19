@@ -154,6 +154,7 @@ button.link[aria-pressed='true'], button.link[aria-current='step'] { color: var(
 .slice .group-title { margin: 0; }
 .slice .seg-toggle { display: flex; }
 .slice-field { grid-template-columns: 1fr auto; }
+.slice-hint { margin: 4px 0 0; font-size: 0.78rem; color: var(--muted); }
 .small-button { padding: 3px 10px; font-size: 0.8rem; }
 .facts { margin: 10px 0; padding-inline-start: 18px; }
 .facts li { margin-block: 3px; }

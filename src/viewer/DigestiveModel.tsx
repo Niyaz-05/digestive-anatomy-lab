@@ -7,6 +7,7 @@ import { effectiveColourBy, effectiveSlice, focusIds, foodActive, highlightedIds
 import type { AnatomicalStructure } from '../contract/schema';
 import { homeBounds } from '../digestive/anchors';
 import { baseColour, cutColour, HIGHLIGHT, HOVER, realLook } from './palette';
+import { closeHoles } from './closeHoles';
 import { applyQuality, hasTissueData, makeTissueMaterial, quality, type TissueMaterial } from './tissue';
 
 export const MODEL_URL = `${import.meta.env.BASE_URL}models/digestive.glb`;
@@ -24,7 +25,7 @@ export const clip = { plane: new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0), ac
 const JUICE_PATH = new Set(['biliary', 'pancreas-duct']);
 const DUODENUM = new Set(['duodenal-bulb', 'duodenum-superior', 'duodenum-descending', 'duodenum-horizontal', 'duodenum-ascending']);
 
-interface Cap { back: THREE.Mesh; front: THREE.Mesh; face: THREE.Mesh; material: THREE.MeshStandardMaterial }
+interface Cap { back: THREE.Mesh; front: THREE.Mesh; face: THREE.Mesh; material: THREE.MeshStandardMaterial; closed: THREE.BufferGeometry }
 interface Part {
   id: string;
   mesh: THREE.Mesh;
@@ -34,23 +35,68 @@ interface Part {
   cap: Cap;
 }
 
+/** Cut-face grain: one tile of the noise texture spans this many metres. */
+const GRAIN_TILE = 0.02;
+
+let grain: THREE.DataTexture | null = null;
+/** A soft, tileable value-noise texture (deterministic) that gives cut faces a tissue grain. */
+function grainTexture(): THREE.DataTexture {
+  if (grain) return grain;
+  const n = 128;
+  let seed = 7;
+  const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const smooth = (t: number) => t * t * (3 - 2 * t);
+  // Smooth value noise with `cells` lattice cells across the tile (tileable).
+  const octave = (cells: number) => {
+    const lattice = Array.from({ length: cells * cells }, rand);
+    const at = (x: number, y: number) => lattice[(y % cells) * cells + (x % cells)]!;
+    const step = n / cells;
+    return (x: number, y: number) => {
+      const gx = Math.floor(x / step), gy = Math.floor(y / step);
+      const fx = smooth((x % step) / step), fy = smooth((y % step) / step);
+      const top = at(gx, gy) * (1 - fx) + at(gx + 1, gy) * fx;
+      const bottom = at(gx, gy + 1) * (1 - fx) + at(gx + 1, gy + 1) * fx;
+      return top * (1 - fy) + bottom * fy;
+    };
+  };
+  const coarse = octave(8), medium = octave(16), fine = octave(32);
+  const data = new Uint8Array(n * n * 4);
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+    const v = 0.84 + 0.08 * coarse(x, y) + 0.05 * medium(x, y) + 0.03 * fine(x, y);
+    data.set([v * 255, v * 255, v * 255, 255], (y * n + x) * 4);
+  }
+  grain = new THREE.DataTexture(data, n, n);
+  grain.wrapS = grain.wrapT = THREE.RepeatWrapping;
+  grain.magFilter = THREE.LinearFilter;
+  grain.minFilter = THREE.LinearMipmapLinearFilter;
+  grain.generateMipmaps = true;
+  grain.colorSpace = THREE.SRGBColorSpace;
+  grain.needsUpdate = true;
+  return grain;
+}
+
 /**
  * Stencil capping (as in three.js' clipping-stencil example): back faces behind the cut add 1 and
  * front faces subtract 1, so the stencil is non-zero exactly where the cut passes through the
  * inside of a closed mesh. The face drawn there is the filled cut surface, in the tissue's colour.
+ * The stencil passes use a closed copy of the part (`closeHoles`), since some source parts are open.
  */
-function makeCap(geometry: THREE.BufferGeometry, plane: THREE.Plane, order: number, colour: string): Cap {
+function makeCap(geometry: THREE.BufferGeometry, plane: THREE.Plane, order: number, colour: string, size: number): Cap {
   const stencilMat = (side: THREE.Side, op: THREE.StencilOp) => new THREE.MeshBasicMaterial({
     side, colorWrite: false, depthWrite: false, depthTest: false,
     stencilWrite: true, stencilFunc: THREE.AlwaysStencilFunc,
     stencilFail: op, stencilZFail: op, stencilZPass: op,
     clippingPlanes: [plane],
   });
-  const back = new THREE.Mesh(geometry, stencilMat(THREE.BackSide, THREE.IncrementWrapStencilOp));
-  const front = new THREE.Mesh(geometry, stencilMat(THREE.FrontSide, THREE.DecrementWrapStencilOp));
+  const closed = closeHoles(geometry);
+  const back = new THREE.Mesh(closed, stencilMat(THREE.BackSide, THREE.IncrementWrapStencilOp));
+  const front = new THREE.Mesh(closed, stencilMat(THREE.FrontSide, THREE.DecrementWrapStencilOp));
   back.renderOrder = front.renderOrder = order;
+  // The face is scaled to `size` metres, so repeat the grain to keep it the same size on every part.
+  const map = grainTexture().clone();
+  map.repeat.setScalar(Math.max(1, size / GRAIN_TILE));
   const material = new THREE.MeshStandardMaterial({
-    color: colour, roughness: 0.75, metalness: 0, side: THREE.DoubleSide,
+    color: colour, map, roughness: 0.5, metalness: 0, side: THREE.DoubleSide,
     stencilWrite: true, stencilRef: 0, stencilFunc: THREE.NotEqualStencilFunc,
     stencilFail: THREE.ReplaceStencilOp, stencilZFail: THREE.ReplaceStencilOp, stencilZPass: THREE.ReplaceStencilOp,
   });
@@ -61,7 +107,7 @@ function makeCap(geometry: THREE.BufferGeometry, plane: THREE.Plane, order: numb
     m.raycast = () => {}; // never pickable
     m.matrixAutoUpdate = m !== face;
   }
-  return { back, front, face, material };
+  return { back, front, face, material, closed };
 }
 
 export function DigestiveModel({ onReady }: { onReady?: () => void }) {
@@ -82,7 +128,8 @@ export function DigestiveModel({ onReady }: { onReady?: () => void }) {
       material.clippingPlanes = [clip.plane];
       o.geometry.computeBoundingBox();
       const box = o.geometry.boundingBox!.clone();
-      out.set(id, { id, mesh: o, material, structure: s, box, cap: makeCap(o.geometry, clip.plane, 10 + order * 2, cutColour(s)) });
+      const capSize = box.getSize(new THREE.Vector3()).length() * 1.05;
+      out.set(id, { id, mesh: o, material, structure: s, box, cap: makeCap(o.geometry, clip.plane, 10 + order * 2, cutColour(s), capSize) });
       order++;
     });
     // Large structures first, so smaller ones inside them (ducts in the pancreas) draw their caps last.
@@ -105,7 +152,9 @@ export function DigestiveModel({ onReady }: { onReady?: () => void }) {
     onReady?.();
     return () => parts.forEach((p) => {
       p.material.dispose();
+      p.cap.material.map?.dispose();
       p.cap.material.dispose();
+      if (p.cap.closed !== p.mesh.geometry) p.cap.closed.dispose();
       (p.cap.back.material as THREE.Material).dispose();
       (p.cap.front.material as THREE.Material).dispose();
       p.cap.face.geometry.dispose();

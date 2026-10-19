@@ -7,7 +7,7 @@ Results recorded on 2026-10-19 on Windows 11, Node 22.14.0, headless Chromium (P
 | Check | Command | What it covers |
 |---|---|---|
 | Types | `npm run typecheck` | TypeScript strict, `noUncheckedIndexedAccess` |
-| Unit | `npm test` | Definition passes the validation gate with no warnings; one mesh structure per model node; each part listed in its own organ and only there; organs on the correct side (+x is the patient's left); every structure cited, https only; tour focus ids, with a journey, a juice and a cut step. Validation-gate rejections (organ mismatch, unknown route structure, unapproved asset, insecure link). Generated routes: food passes every part of the tract in order, each leg stays inside its organ, consecutive organs join without gaps, bile and pancreatic juice reach the duodenum through the ampulla, every tract part maps to a stage in the food panel, the stomach touches its neighbours without entering them. Reducer (initial state, organ highlight, Digestion toggles, tour overrides, cut clamping); search (names and synonyms) |
+| Unit | `npm test` | Cut-face mesh closing (`closeHoles`) and the camera turning to face a cut. Definition passes the validation gate with no warnings; one mesh structure per model node; each part listed in its own organ and only there; organs on the correct side (+x is the patient's left); every structure cited, https only; tour focus ids, with a journey, a juice and a cut step. Validation-gate rejections (organ mismatch, unknown route structure, unapproved asset, insecure link). Generated routes: food passes every part of the tract in order, each leg stays inside its organ, consecutive organs join without gaps, bile and pancreatic juice reach the duodenum through the ampulla, every tract part maps to a stage in the food panel, the stomach touches its neighbours without entering them. Reducer (initial state, organ highlight, Digestion toggles, tour overrides, cut clamping); search (names and synonyms) |
 | Assets | `npm run validate:assets` | GLB sha256 = provenance, node set = geometry record, finite positions, unit normals, indices in range, triangle counts, baked `_TISSUE` on every mesh, attribution names HuBMAP, the four organ DOIs, the united-body DOI, BodyParts3D, DBCLS, CC BY 4.0 and the source and output hashes |
 | Determinism | re-run `tools/extract-digestive.mjs` then `tools/bake-shading.mjs` | Byte-identical `digestive.glb` |
 | Build | `npm run build` | Type check + production bundle |
@@ -44,6 +44,23 @@ Results recorded on 2026-10-19 on Windows 11, Node 22.14.0, headless Chromium (P
 | `npm run build` | **Pass**. JS bundle about 1.44 MB (about 400 kB gzip); Vite warns about chunk size |
 | `npm run e2e` | **Pass**: 17/17 in 9.0 min (Digestion 58 s, tour 2.2 min) |
 | Live site (2026-10-19) | **Pass**: https://digestive-anatomy-lab.vercel.app returns the page; `models/digestive.glb` is served with the recorded sha256 `6f8dae786587…`; the model renders in headless Chromium with no console errors |
+
+## Cut fix (2026-10-19)
+
+Reported in Chrome: the cut faces had holes, the cut face was often out of view, it was not clear which half was kept, and the faces looked flat. Checked in headless Chromium on the reporter's GPU (AMD Radeon, ANGLE Direct3D 11) before and after the fix, with Side, Front and Top cuts, each with and without Flip.
+
+- **Holes.** Stencil capping needs closed meshes. 47 of the 51 digestive parts (the HuBMAP organ parts) are open where they were split from a neighbour or where vessels enter, so, for example, the liver's front cut showed the background through it. The stencil passes now use a closed copy of each part (`src/viewer/closeHoles.ts`: weld, find boundary loops, fan-fill them). The visible tissue and the model file are unchanged.
+- **Cut face out of view.** Choosing a cut, or pressing Flip, now turns the camera to the removed side: Side → Left side (Right side when flipped), Front → Front (Back), Top → Top (Bottom).
+- **Which half is kept.** The panel shows it under the slider, for example "Showing the back half".
+- **Flat faces.** Cut faces have a soft, deterministic noise grain of the same size on every part, and a moister finish (roughness 0.5).
+
+| Check | Result |
+|---|---|
+| `npm run typecheck` | **Pass** |
+| `npm test` | **Pass**: 25/25 in 3 files, including `closeHoles` (open tube, open box, closed sphere unchanged, all 51 digestive parts closed) and the camera follow |
+| `npm run validate:assets` | **Pass**: model unchanged (`6f8dae786587…`) |
+| `npm run e2e` | **Pass**: 17/17 in 8.0 min; the cut test also checks the camera preset and the kept-half hint |
+| GPU screenshots | All 6 cut and flip cases face the cut, with filled cut faces and no console errors |
 
 ## Defects found and fixed during QA
 

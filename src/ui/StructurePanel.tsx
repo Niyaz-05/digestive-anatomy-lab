@@ -1,6 +1,6 @@
 import { useId, useMemo, useState } from 'react';
 import { useLab } from '../app/LabContext';
-import { isVisible, type ColourBy } from '../app/state';
+import { isVisible, keptHalf, type ColourBy } from '../app/state';
 import { searchStructures } from '../app/search';
 import type { AnatomicalStructure, SliceAxis } from '../contract/schema';
 import { baseColour } from '../viewer/palette';
@@ -54,6 +54,7 @@ function SliceControl() {
           </button>
         </div>
       )}
+      {s.axis !== 'off' && <p className="slice-hint" aria-live="polite">Showing {keptHalf(s)}</p>}
     </div>
   );
 }
