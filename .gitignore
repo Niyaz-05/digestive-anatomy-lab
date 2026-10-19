@@ -1,0 +1,12 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example
+*.log
+.vercel/
+
+# Downloaded HuBMAP organ files (3.7 MB). URLs, sizes and sha256 are in src/digestive/generated/provenance.json
+/source/

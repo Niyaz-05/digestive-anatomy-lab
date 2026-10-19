@@ -1,0 +1,758 @@
+{
+  "output": {
+    "file": "public/models/digestive.glb",
+    "bytes": 1214596,
+    "sha256": "6f8dae786587fa51d3bbdb00beffd180c921105f31f4da5f610b0007f87fc1b4",
+    "triangles": 56555,
+    "sourceTriangles": 154348
+  },
+  "sources": {
+    "organs": {
+      "liver": {
+        "name": "3D Reference Organ for Liver, Female, v1.2",
+        "doi": "https://doi.org/10.48539/HBM599.GZLD.639",
+        "creators": "Kristen Browne, Heidi Schlehlein",
+        "license": "CC-BY-4.0",
+        "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/liver-female/v1.2/assets/3d-vh-f-liver.glb",
+        "bytes": 1738552,
+        "sha256": "2ab712216dc8af026f87c43b0ad783273fffdf080bb312bcb4c34724f53e5fa6"
+      },
+      "pancreas": {
+        "name": "3D Reference Organ for Pancreas, Female, v1.3",
+        "doi": "https://doi.org/10.48539/HBM866.PNNZ.328",
+        "creators": "Kristen Browne, Heidi Schlehlein",
+        "license": "CC-BY-4.0",
+        "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-female/v1.3/assets/3d-vh-f-pancreas.glb",
+        "bytes": 714832,
+        "sha256": "553411dfc0391d305191a8f204c88e9fd3c05f7a2c7501023914728f294d8b4e"
+      },
+      "small-intestine": {
+        "name": "3D Reference Organ for Small Intestine, Female, v1.2",
+        "doi": "https://doi.org/10.48539/HBM784.FBXB.245",
+        "creators": "Kristen Browne, Heidi Schlehlein",
+        "license": "CC-BY-4.0",
+        "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-female/v1.2/assets/3d-vh-f-small-intestine.glb",
+        "bytes": 856536,
+        "sha256": "850052a437ac12a57e05bdd97d314ade6f8e1cc4801d13cfbcdffe8d83fa3842"
+      },
+      "large-intestine": {
+        "name": "3D Reference Organ for Large Intestine, Female, v1.3",
+        "doi": "https://doi.org/10.48539/HBM682.RSXX.965",
+        "creators": "Kristen Browne, Heidi Schlehlein",
+        "license": "CC-BY-4.0",
+        "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-female/v1.3/assets/3d-sbu-f-large-intestine.glb",
+        "bytes": 387376,
+        "sha256": "b3046d2af718e7f031578db4089a9f4bea707aa4a75af98aab78f172c2f53d74"
+      }
+    },
+    "united": {
+      "name": "3D Reference Organ Set for Female v1.5 (HuBMAP HRA united female), as converted by Female Atlas",
+      "creators": "Kristen Browne, Heidi Schlehlein",
+      "doi": "https://doi.org/10.48539/HBM352.BTSQ.586",
+      "license": "CC-BY-4.0",
+      "intermediate": "github.com/Niyaz-05/female-atlas, commit 4c2dfcca02739b59827601915128ee64abdff2ea",
+      "atlasJsonSha256": "5fec63b2ebcb76ecd9c33027ed725e8ec0a7a76b756f72681285410072ae5c51",
+      "chunkSha256": {
+        "female-5.bin": "ee9b75cb2f9bddacc581ae7a57dd2fce8500aceab5b91916a826c6ba7aec5e81",
+        "female-7.bin": "8ce85965a15c7574df239d48f23c10a33a8e1a8b208eec3d8ea08cfdebbfc889"
+      },
+      "transformReversed": "y - 0.794760942 m (the official organ files match these parts after this translation, within a few millimetres of simplification)"
+    },
+    "bodyparts3d": {
+      "name": "BodyParts3D 4.0 (Database Center for Life Science), via the Human Atlas build",
+      "license": "CC-BY-4.0",
+      "intermediate": "github.com/Niyaz-05/human-atlas, commit 76f069640f2c3dd40a58d1556896ac25008f592e",
+      "atlasJsonSha256": "c359f4bcd2cba90b7411d66d5e9fc04dc81294d46cd5c1e8b212c824f2e5bbee",
+      "chunkSha256": {
+        "body-9.bin": "0aa8aa09a379a2d759872659a2ef68fc4510ee37e435c4ebc63ee679722a4547",
+        "body-7.bin": "06340f48478eb989cec117a558290c0cd54eeead9641b565cbb8aab255b4e56b",
+        "body-11.bin": "e8c1afe7f30fe710ad164ec9cd2287a32881606e7eb590af47d76b3f84405027"
+      },
+      "parts": {
+        "oesophagus": [
+          "FJ2563 Esophagus"
+        ],
+        "stomach": [
+          "FJ2564 Stomach"
+        ]
+      },
+      "registration": {
+        "method": "affine (3x4) least squares on landmark centroids",
+        "affineRows": [
+          [
+            1.045465,
+            0.043477,
+            -0.175377,
+            -0.052476
+          ],
+          [
+            -0.154589,
+            1.127727,
+            -0.418904,
+            -0.995358
+          ],
+          [
+            0.148189,
+            -0.280144,
+            1.337133,
+            0.223355
+          ]
+        ],
+        "rmsResidualMm": 18.039912,
+        "residuals": [
+          {
+            "landmark": "Duodenum",
+            "mm": 11.862931
+          },
+          {
+            "landmark": "Pancreas",
+            "mm": 12.848806
+          },
+          {
+            "landmark": "Gallbladder",
+            "mm": 22.136974
+          },
+          {
+            "landmark": "Caudate lobe of liver",
+            "mm": 10.019656
+          },
+          {
+            "landmark": "Ascending colon",
+            "mm": 16.258047
+          },
+          {
+            "landmark": "Transverse colon",
+            "mm": 3.591879
+          },
+          {
+            "landmark": "Descending colon",
+            "mm": 14.609507
+          },
+          {
+            "landmark": "Rectum",
+            "mm": 9.919255
+          },
+          {
+            "landmark": "Spleen",
+            "mm": 31.429204
+          },
+          {
+            "landmark": "Left kidney",
+            "mm": 29.275397
+          },
+          {
+            "landmark": "Right kidney",
+            "mm": 15.800754
+          }
+        ]
+      },
+      "refinement": {
+        "method": "deterministic coordinate search over shift, rotation (about the stomach centroid) and uniform scale",
+        "params": {
+          "shiftMetres": [
+            0.008,
+            -0.001,
+            -0.008
+          ],
+          "rotationRadians": [
+            0.25,
+            0.08,
+            -0.18
+          ],
+          "scale": 0.88
+        },
+        "before": {
+          "gastricContactMedianMm": 11.232175,
+          "oesophagealContactMedianMm": 14.524836,
+          "stomachInsideNeighboursPct": 35.308057,
+          "pylorusGapMm": 0.06328
+        },
+        "after": {
+          "gastricContactMedianMm": 5.780701,
+          "oesophagealContactMedianMm": 5.263103,
+          "stomachInsideNeighboursPct": 24.407583,
+          "insidePctByNeighbour": {
+            "liver": 11.374408,
+            "pancreas-body": 5.21327,
+            "pancreas-tail": 0.236967,
+            "transverse-colon": 5.924171,
+            "splenic-flexure": 4.265403,
+            "spleen": 0.947867,
+            "left-kidney": 0
+          },
+          "pylorusGapMm": 0.954644
+        },
+        "moulding": {
+          "passes": 11,
+          "verticesMoved": 1412,
+          "stillInsidePct": 0.031949,
+          "fixedJunctionVertices": 244
+        }
+      }
+    }
+  },
+  "changesHere": "Selected and merged the source meshes in src/digestive/source/structures.source.json; welded coincident vertices; simplified each mesh with meshoptimizer within a 0.4 % relative error bound (largest error used: 0.400 %); recomputed smooth normals; registered the BodyParts3D oesophagus and stomach onto the HRA body; translated so the centre of the model is the origin.",
+  "centreOffsetMetres": [
+    -0.008395,
+    0.316046,
+    -0.053432
+  ],
+  "orientationChecks": {
+    "oesophagusAboveStomach": true,
+    "stomachLeftOfLiver": true,
+    "liverAboveTransverseColon": true,
+    "caecumOnRight": true,
+    "rectumLowest": true,
+    "gallbladderUnderLiver": true
+  },
+  "routeGapsMm": {
+    "oesophagus→stomach": 0.355007,
+    "stomach→duodenal-bulb": 0.426669,
+    "duodenal-bulb→duodenum-superior": 0,
+    "duodenum-superior→duodenum-descending": 0,
+    "duodenum-descending→duodenum-horizontal": 0,
+    "duodenum-horizontal→duodenum-ascending": 0.115779,
+    "duodenum-ascending→jejunum": 0,
+    "jejunum→ileum": 0,
+    "ileum→terminal-ileum": 0.056631,
+    "terminal-ileum→caecum": 0.688221,
+    "caecum→ascending-colon": 0,
+    "ascending-colon→hepatic-flexure": 0,
+    "hepatic-flexure→transverse-colon": 0,
+    "transverse-colon→splenic-flexure": 0,
+    "splenic-flexure→descending-colon": 0,
+    "descending-colon→sigmoid-colon": 0,
+    "sigmoid-colon→rectum": 0,
+    "right-hepatic-duct→common-hepatic-duct": 0,
+    "common-hepatic-duct→common-bile-duct": 0,
+    "common-bile-duct→hepatopancreatic-ampulla": 0,
+    "left-hepatic-duct→common-hepatic-duct": 0,
+    "gallbladder→cystic-duct": 0.692134,
+    "cystic-duct→common-bile-duct": 1.073968,
+    "main-pancreatic-duct→hepatopancreatic-ampulla": 0
+  },
+  "routeCentrelineFallbacks": [
+    "left-hepatic-duct",
+    "main-pancreatic-duct",
+    "accessory-pancreatic-duct"
+  ],
+  "structures": [
+    {
+      "id": "oesophagus",
+      "bp3d": [
+        "FJ2563"
+      ]
+    },
+    {
+      "id": "stomach",
+      "bp3d": [
+        "FJ2564"
+      ]
+    },
+    {
+      "id": "duodenal-bulb",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_duodenal_ampulla"
+        ]
+      ]
+    },
+    {
+      "id": "duodenum-superior",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_duodenum_superior"
+        ]
+      ]
+    },
+    {
+      "id": "duodenum-descending",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_duodenum_descending"
+        ]
+      ]
+    },
+    {
+      "id": "duodenum-horizontal",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_duodenum_horizontal"
+        ]
+      ]
+    },
+    {
+      "id": "duodenum-ascending",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_duodenum_ascending"
+        ]
+      ]
+    },
+    {
+      "id": "jejunum",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_jejenum"
+        ]
+      ]
+    },
+    {
+      "id": "ileum",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_ileum"
+        ]
+      ]
+    },
+    {
+      "id": "terminal-ileum",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_ileum_terminal"
+        ]
+      ]
+    },
+    {
+      "id": "ileocaecal-valve",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_ileocecal_valve"
+        ]
+      ]
+    },
+    {
+      "id": "caecum",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_caecum"
+        ]
+      ]
+    },
+    {
+      "id": "appendix",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_vermiform_appendix"
+        ]
+      ]
+    },
+    {
+      "id": "ascending-colon",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_ascending_colon"
+        ]
+      ]
+    },
+    {
+      "id": "hepatic-flexure",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_hepatic_flexure_of_colon"
+        ]
+      ]
+    },
+    {
+      "id": "transverse-colon",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_transverse_colon"
+        ]
+      ]
+    },
+    {
+      "id": "splenic-flexure",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_splenic_flexure_of_colon"
+        ]
+      ]
+    },
+    {
+      "id": "descending-colon",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_descending_colon"
+        ]
+      ]
+    },
+    {
+      "id": "sigmoid-colon",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_sigmoid_colon"
+        ]
+      ]
+    },
+    {
+      "id": "rectum",
+      "official": [
+        [
+          "large-intestine",
+          "VH_F_rectum"
+        ]
+      ]
+    },
+    {
+      "id": "liver",
+      "official": [
+        [
+          "liver",
+          "VH_F_capsule_of_the_liver"
+        ]
+      ]
+    },
+    {
+      "id": "liver-right-anterosuperior",
+      "official": [
+        [
+          "liver",
+          "VH_F_right_anterosuperior_segment"
+        ]
+      ]
+    },
+    {
+      "id": "liver-right-anteroinferior",
+      "official": [
+        [
+          "liver",
+          "VH_F_right_anteroinferior_segment"
+        ]
+      ]
+    },
+    {
+      "id": "liver-right-posterosuperior",
+      "official": [
+        [
+          "liver",
+          "VH_F_right_posterosuperior_segment"
+        ]
+      ]
+    },
+    {
+      "id": "liver-right-posteroinferior",
+      "official": [
+        [
+          "liver",
+          "VH_F_right_posteroinferior_segment"
+        ]
+      ]
+    },
+    {
+      "id": "liver-left-superomedial",
+      "official": [
+        [
+          "liver",
+          "VH_F_left_superomedial_segment"
+        ],
+        [
+          "liver",
+          "VH_F_left_superomedial_segment1"
+        ]
+      ]
+    },
+    {
+      "id": "liver-left-inferomedial",
+      "official": [
+        [
+          "liver",
+          "VH_F_left_inferomedial_segment"
+        ]
+      ]
+    },
+    {
+      "id": "liver-left-anterolateral",
+      "official": [
+        [
+          "liver",
+          "VH_F_left_anterolateral_segment"
+        ]
+      ]
+    },
+    {
+      "id": "caudate-lobe",
+      "official": [
+        [
+          "liver",
+          "VH_F_caudate_lobe"
+        ]
+      ]
+    },
+    {
+      "id": "quadrate-lobe",
+      "official": [
+        [
+          "liver",
+          "VH_F_quadrate_lobe"
+        ]
+      ]
+    },
+    {
+      "id": "falciform-ligament",
+      "official": [
+        [
+          "liver",
+          "VH_F_falciform_ligament"
+        ]
+      ]
+    },
+    {
+      "id": "round-ligament",
+      "official": [
+        [
+          "liver",
+          "VH_F_round_ligament_of_liver"
+        ]
+      ]
+    },
+    {
+      "id": "coronary-ligament",
+      "official": [
+        [
+          "liver",
+          "VH_F_coronary_ligament_of_liver"
+        ]
+      ]
+    },
+    {
+      "id": "triangular-ligament",
+      "official": [
+        [
+          "liver",
+          "VH_F_triangular_ligament_of_liver"
+        ]
+      ]
+    },
+    {
+      "id": "ligamentum-venosum",
+      "official": [
+        [
+          "liver",
+          "VH_F_ligamentum_venosum"
+        ]
+      ]
+    },
+    {
+      "id": "hepatoduodenal-ligament",
+      "official": [
+        [
+          "liver",
+          "VH_F_hepataduodenal_ligament"
+        ]
+      ]
+    },
+    {
+      "id": "gallbladder",
+      "united": [
+        "VH_F_gallbladder"
+      ]
+    },
+    {
+      "id": "right-hepatic-duct",
+      "united": [
+        "VH_F_right_hepatic_duct"
+      ]
+    },
+    {
+      "id": "left-hepatic-duct",
+      "united": [
+        "VH_F_left_hepatic_duct"
+      ]
+    },
+    {
+      "id": "common-hepatic-duct",
+      "united": [
+        "VH_F_common_hepatic_duct"
+      ]
+    },
+    {
+      "id": "cystic-duct",
+      "united": [
+        "VH_F_cystic_duct"
+      ]
+    },
+    {
+      "id": "common-bile-duct",
+      "united": [
+        "VH_F_common_bile_duct"
+      ]
+    },
+    {
+      "id": "hepatopancreatic-ampulla",
+      "united": [
+        "VH_F_hepatopancreatic_ampulla"
+      ]
+    },
+    {
+      "id": "ampulla-sphincter",
+      "official": [
+        [
+          "small-intestine",
+          "VH_F_sphincter_of_heptopancreatic_ampulla"
+        ]
+      ]
+    },
+    {
+      "id": "pancreas-head",
+      "official": [
+        [
+          "pancreas",
+          "VH_F_head_of_pancreas"
+        ]
+      ]
+    },
+    {
+      "id": "pancreas-uncinate",
+      "official": [
+        [
+          "pancreas",
+          "VH_F_ucinate_process1"
+        ]
+      ]
+    },
+    {
+      "id": "pancreas-neck",
+      "official": [
+        [
+          "pancreas",
+          "VH_F_neck_of_pancreas"
+        ]
+      ]
+    },
+    {
+      "id": "pancreas-body",
+      "official": [
+        [
+          "pancreas",
+          "VH_F_body_of_pancreas"
+        ]
+      ]
+    },
+    {
+      "id": "pancreas-tail",
+      "official": [
+        [
+          "pancreas",
+          "VH_F_tail_of_pancreas"
+        ]
+      ]
+    },
+    {
+      "id": "main-pancreatic-duct",
+      "united": [
+        "VH_F_ventral_pancreatic_duct"
+      ]
+    },
+    {
+      "id": "accessory-pancreatic-duct",
+      "united": [
+        "VH_F_dorsal_pancreatic_duct"
+      ]
+    }
+  ],
+  "shadingBake": {
+    "tool": "tools/bake-shading.mjs",
+    "config": {
+      "$comment": "Shading bake for the real-tissue look (tools/bake-shading.mjs). occluders: which layers can shade each layer. Ducts are not shaded by the organs around them, so they stay readable when those organs turn see-through.",
+      "model": "public/models/digestive.glb",
+      "provenance": "src/digestive/generated/provenance.json",
+      "aoDistance": 0.014,
+      "rays": 48,
+      "rayOffset": 0.0003,
+      "noiseFrequency": 160,
+      "occluders": {
+        "tract": [
+          "tract",
+          "liver",
+          "pancreas",
+          "biliary"
+        ],
+        "liver": [
+          "liver",
+          "tract",
+          "biliary",
+          "ligament"
+        ],
+        "liver-segment": [
+          "liver-segment"
+        ],
+        "ligament": [
+          "ligament",
+          "liver"
+        ],
+        "biliary": [
+          "biliary"
+        ],
+        "pancreas": [
+          "pancreas",
+          "tract"
+        ],
+        "pancreas-duct": [
+          "pancreas-duct"
+        ]
+      },
+      "fat": null
+    },
+    "attribute": "_TISSUE (VEC4 unsigned byte, normalised): r ambient occlusion, g mottling noise, b fat proximity, a unused",
+    "unbakedSha256": "d30b73ad060c9f2422a9297f77158b8c0b32d650e7e2ff88d70bf9360cd8f67c",
+    "unbakedOutput": {
+      "bytes": 1088488
+    },
+    "vertices": 29668,
+    "layers": {
+      "tract": {
+        "meshes": 20,
+        "meanAO": 0.831,
+        "vertices": 15695
+      },
+      "liver": {
+        "meshes": 1,
+        "meanAO": 0.852,
+        "vertices": 3825
+      },
+      "liver-segment": {
+        "meshes": 9,
+        "meanAO": 0.986,
+        "vertices": 4586
+      },
+      "ligament": {
+        "meshes": 6,
+        "meanAO": 0.801,
+        "vertices": 1065
+      },
+      "biliary": {
+        "meshes": 8,
+        "meanAO": 0.669,
+        "vertices": 2250
+      },
+      "pancreas": {
+        "meshes": 5,
+        "meanAO": 0.831,
+        "vertices": 1820
+      },
+      "pancreas-duct": {
+        "meshes": 2,
+        "meanAO": 0.579,
+        "vertices": 427
+      }
+    }
+  }
+}

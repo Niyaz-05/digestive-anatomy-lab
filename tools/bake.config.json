@@ -1,0 +1,41 @@
+{
+  "$comment": "Shading bake for the real-tissue look (tools/bake-shading.mjs). occluders: which layers can shade each layer. Ducts are not shaded by the organs around them, so they stay readable when those organs turn see-through.",
+  "model": "public/models/digestive.glb",
+  "provenance": "src/digestive/generated/provenance.json",
+  "aoDistance": 0.014,
+  "rays": 48,
+  "rayOffset": 0.0003,
+  "noiseFrequency": 160,
+  "occluders": {
+    "tract": [
+      "tract",
+      "liver",
+      "pancreas",
+      "biliary"
+    ],
+    "liver": [
+      "liver",
+      "tract",
+      "biliary",
+      "ligament"
+    ],
+    "liver-segment": [
+      "liver-segment"
+    ],
+    "ligament": [
+      "ligament",
+      "liver"
+    ],
+    "biliary": [
+      "biliary"
+    ],
+    "pancreas": [
+      "pancreas",
+      "tract"
+    ],
+    "pancreas-duct": [
+      "pancreas-duct"
+    ]
+  },
+  "fat": null
+}

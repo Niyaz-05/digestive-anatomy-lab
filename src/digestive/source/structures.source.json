@@ -1,0 +1,98 @@
+{
+  "$comment": "Digestive structures mapped to source nodes. 'official': node in an official HRA female reference-organ GLB (file key -> sources). 'united': part id in the HRA united-female v1.5 body as converted by Female Atlas (translated +0.794760942 m in y; reversed here). 'bp3d': BodyParts3D 4.0 part id in the Human Atlas build, registered onto the HRA body by an affine fit (see registration). Sides are checked by position: +x is the patient's left.",
+  "unitedYShift": 0.794760942,
+  "officialFiles": {
+    "liver": "source/3d-vh-f-liver.glb",
+    "pancreas": "source/3d-vh-f-pancreas.glb",
+    "small-intestine": "source/3d-vh-f-small-intestine.glb",
+    "large-intestine": "source/3d-sbu-f-large-intestine.glb"
+  },
+  "structures": [
+    { "id": "oesophagus", "layer": "tract", "side": "midline", "bp3d": ["FJ2563"] },
+    { "id": "stomach", "layer": "tract", "side": "left", "bp3d": ["FJ2564"] },
+    { "id": "duodenal-bulb", "layer": "tract", "side": "right", "official": [["small-intestine", "VH_F_duodenal_ampulla"]] },
+    { "id": "duodenum-superior", "layer": "tract", "side": "right", "official": [["small-intestine", "VH_F_duodenum_superior"]] },
+    { "id": "duodenum-descending", "layer": "tract", "side": "right", "official": [["small-intestine", "VH_F_duodenum_descending"]] },
+    { "id": "duodenum-horizontal", "layer": "tract", "side": "midline", "official": [["small-intestine", "VH_F_duodenum_horizontal"]] },
+    { "id": "duodenum-ascending", "layer": "tract", "side": "left", "official": [["small-intestine", "VH_F_duodenum_ascending"]] },
+    { "id": "jejunum", "layer": "tract", "side": "left", "official": [["small-intestine", "VH_F_jejenum"]] },
+    { "id": "ileum", "layer": "tract", "side": "midline", "official": [["small-intestine", "VH_F_ileum"]] },
+    { "id": "terminal-ileum", "layer": "tract", "side": "right", "official": [["small-intestine", "VH_F_ileum_terminal"]] },
+    { "id": "ileocaecal-valve", "layer": "tract", "side": "right", "official": [["large-intestine", "VH_F_ileocecal_valve"]] },
+    { "id": "caecum", "layer": "tract", "side": "right", "official": [["large-intestine", "VH_F_caecum"]] },
+    { "id": "appendix", "layer": "tract", "side": "right", "official": [["large-intestine", "VH_F_vermiform_appendix"]] },
+    { "id": "ascending-colon", "layer": "tract", "side": "right", "official": [["large-intestine", "VH_F_ascending_colon"]] },
+    { "id": "hepatic-flexure", "layer": "tract", "side": "right", "official": [["large-intestine", "VH_F_hepatic_flexure_of_colon"]] },
+    { "id": "transverse-colon", "layer": "tract", "side": "midline", "official": [["large-intestine", "VH_F_transverse_colon"]] },
+    { "id": "splenic-flexure", "layer": "tract", "side": "left", "official": [["large-intestine", "VH_F_splenic_flexure_of_colon"]] },
+    { "id": "descending-colon", "layer": "tract", "side": "left", "official": [["large-intestine", "VH_F_descending_colon"]] },
+    { "id": "sigmoid-colon", "layer": "tract", "side": "midline", "official": [["large-intestine", "VH_F_sigmoid_colon"]] },
+    { "id": "rectum", "layer": "tract", "side": "midline", "official": [["large-intestine", "VH_F_rectum"]] },
+
+    { "id": "liver", "layer": "liver", "side": "right", "official": [["liver", "VH_F_capsule_of_the_liver"]] },
+    { "id": "liver-right-anterosuperior", "layer": "liver-segment", "side": "right", "official": [["liver", "VH_F_right_anterosuperior_segment"]] },
+    { "id": "liver-right-anteroinferior", "layer": "liver-segment", "side": "right", "official": [["liver", "VH_F_right_anteroinferior_segment"]] },
+    { "id": "liver-right-posterosuperior", "layer": "liver-segment", "side": "right", "official": [["liver", "VH_F_right_posterosuperior_segment"]] },
+    { "id": "liver-right-posteroinferior", "layer": "liver-segment", "side": "right", "official": [["liver", "VH_F_right_posteroinferior_segment"]] },
+    { "id": "liver-left-superomedial", "layer": "liver-segment", "side": "midline", "official": [["liver", "VH_F_left_superomedial_segment"], ["liver", "VH_F_left_superomedial_segment1"]], "sideCheck": false },
+    { "id": "liver-left-inferomedial", "layer": "liver-segment", "side": "right", "official": [["liver", "VH_F_left_inferomedial_segment"]], "sideCheck": false },
+    { "id": "liver-left-anterolateral", "layer": "liver-segment", "side": "left", "official": [["liver", "VH_F_left_anterolateral_segment"]] },
+    { "id": "caudate-lobe", "layer": "liver-segment", "side": "midline", "official": [["liver", "VH_F_caudate_lobe"]], "sideCheck": false },
+    { "id": "quadrate-lobe", "layer": "liver-segment", "side": "right", "official": [["liver", "VH_F_quadrate_lobe"]] },
+    { "id": "falciform-ligament", "layer": "ligament", "side": "midline", "official": [["liver", "VH_F_falciform_ligament"]] },
+    { "id": "round-ligament", "layer": "ligament", "side": "midline", "official": [["liver", "VH_F_round_ligament_of_liver"]], "sideCheck": false },
+    { "id": "coronary-ligament", "layer": "ligament", "side": "right", "official": [["liver", "VH_F_coronary_ligament_of_liver"]] },
+    { "id": "triangular-ligament", "layer": "ligament", "side": "left", "official": [["liver", "VH_F_triangular_ligament_of_liver"]] },
+    { "id": "ligamentum-venosum", "layer": "ligament", "side": "midline", "official": [["liver", "VH_F_ligamentum_venosum"]], "sideCheck": false },
+    { "id": "hepatoduodenal-ligament", "layer": "ligament", "side": "right", "official": [["liver", "VH_F_hepataduodenal_ligament"]] },
+
+    { "id": "gallbladder", "layer": "biliary", "side": "right", "united": ["VH_F_gallbladder"] },
+    { "id": "right-hepatic-duct", "layer": "biliary", "side": "right", "united": ["VH_F_right_hepatic_duct"] },
+    { "id": "left-hepatic-duct", "layer": "biliary", "side": "midline", "united": ["VH_F_left_hepatic_duct"], "sideCheck": false },
+    { "id": "common-hepatic-duct", "layer": "biliary", "side": "right", "united": ["VH_F_common_hepatic_duct"] },
+    { "id": "cystic-duct", "layer": "biliary", "side": "right", "united": ["VH_F_cystic_duct"] },
+    { "id": "common-bile-duct", "layer": "biliary", "side": "right", "united": ["VH_F_common_bile_duct"] },
+    { "id": "hepatopancreatic-ampulla", "layer": "biliary", "side": "right", "united": ["VH_F_hepatopancreatic_ampulla"] },
+    { "id": "ampulla-sphincter", "layer": "biliary", "side": "right", "official": [["small-intestine", "VH_F_sphincter_of_heptopancreatic_ampulla"]] },
+
+    { "id": "pancreas-head", "layer": "pancreas", "side": "right", "official": [["pancreas", "VH_F_head_of_pancreas"]] },
+    { "id": "pancreas-uncinate", "layer": "pancreas", "side": "right", "official": [["pancreas", "VH_F_ucinate_process1"]] },
+    { "id": "pancreas-neck", "layer": "pancreas", "side": "midline", "official": [["pancreas", "VH_F_neck_of_pancreas"]], "sideCheck": false },
+    { "id": "pancreas-body", "layer": "pancreas", "side": "left", "official": [["pancreas", "VH_F_body_of_pancreas"]] },
+    { "id": "pancreas-tail", "layer": "pancreas", "side": "left", "official": [["pancreas", "VH_F_tail_of_pancreas"]] },
+    { "id": "main-pancreatic-duct", "layer": "pancreas-duct", "side": "midline", "united": ["VH_F_ventral_pancreatic_duct"], "sideCheck": false },
+    { "id": "accessory-pancreatic-duct", "layer": "pancreas-duct", "side": "midline", "united": ["VH_F_dorsal_pancreatic_duct"], "sideCheck": false }
+  ],
+  "foodRoute": ["oesophagus", "stomach", "duodenal-bulb", "duodenum-superior", "duodenum-descending", "duodenum-horizontal", "duodenum-ascending", "jejunum", "ileum", "terminal-ileum", "caecum", "ascending-colon", "hepatic-flexure", "transverse-colon", "splenic-flexure", "descending-colon", "sigmoid-colon", "rectum"],
+  "juiceRoutes": {
+    "bile-right": { "ids": ["right-hepatic-duct", "common-hepatic-duct", "common-bile-duct", "hepatopancreatic-ampulla"], "into": "duodenum-descending" },
+    "bile-left": { "ids": ["left-hepatic-duct", "common-hepatic-duct", "common-bile-duct", "hepatopancreatic-ampulla"], "into": "duodenum-descending" },
+    "bile-gallbladder": { "ids": ["gallbladder", "cystic-duct", "common-bile-duct", "hepatopancreatic-ampulla"], "into": "duodenum-descending" },
+    "pancreatic": { "ids": ["main-pancreatic-duct", "hepatopancreatic-ampulla"], "into": "duodenum-descending" },
+    "pancreatic-accessory": { "ids": ["accessory-pancreatic-duct"], "into": "duodenum-descending" }
+  },
+  "refine": {
+    "$comment": "Stomach refinement (see extract-digestive.mjs): model structures and HRA united-body organs the stomach must not overlap.",
+    "blockers": ["liver", "pancreas-body", "pancreas-tail", "transverse-colon", "splenic-flexure"],
+    "unitedBlockers": [
+      ["VH_F_gastric_surface_of_spleen", "VH_F_diaphragmatic_surface_of_spleen", "VH_F_colic_surface_of_spleen", "VH_F_hilum_of_spleen", "VH_F_renal_surface_of_spleen"],
+      ["VH_F_kidney_capsule_L"]
+    ]
+  },
+  "registration": {
+    "$comment": "BodyParts3D part name (Human Atlas) -> HRA source part ids (united body, translated back). A 3x4 affine is fitted by least squares on the centroids and applied to the BodyParts3D oesophagus and stomach.",
+    "pairs": [
+      ["Duodenum", ["VH_F_duodenum_superior", "VH_F_duodenal_ampulla", "VH_F_duodenum_descending", "VH_F_duodenum_horizontal", "VH_F_duodenum_ascending"]],
+      ["Pancreas", ["VH_F_head_of_pancreas", "VH_F_neck_of_pancreas", "VH_F_body_of_pancreas", "VH_F_tail_of_pancreas", "VH_F_ucinate_process1"]],
+      ["Gallbladder", ["VH_F_gallbladder"]],
+      ["Caudate lobe of liver", ["VH_F_caudate_lobe"]],
+      ["Ascending colon", ["VH_F_ascending_colon"]],
+      ["Transverse colon", ["VH_F_transverse_colon"]],
+      ["Descending colon", ["VH_F_descending_colon"]],
+      ["Rectum", ["VH_F_rectum"]],
+      ["Spleen", ["VH_F_gastric_surface_of_spleen", "VH_F_diaphragmatic_surface_of_spleen", "VH_F_colic_surface_of_spleen", "VH_F_hilum_of_spleen", "VH_F_renal_surface_of_spleen"]],
+      ["Left kidney", ["VH_F_kidney_capsule_L"]],
+      ["Right kidney", ["VH_F_kidney_capsule_R"]]
+    ]
+  }
+}
