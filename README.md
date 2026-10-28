@@ -2,6 +2,8 @@
 
 **Live:** https://digestive-anatomy-lab.vercel.app
 
+Works on phones and tablets: the details rise from the bottom in a sheet you can drag, fold or close with a swipe down, and picking a structure frames it above the sheet.
+
 A realistic, interactive 3D human digestive system for secondary-school and first-year biology:
 
 - **Real look.** The organs as they look in a specimen: glistening pink-grey oesophagus and stomach, pink-tan small intestine, greyish-pink colon, red-brown liver, green gallbladder and pale pancreas. "Colour" switches to **Organs** to give each organ its own colour.

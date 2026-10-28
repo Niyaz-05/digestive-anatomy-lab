@@ -69,6 +69,16 @@ Reported in Chrome: the cut faces had holes, the cut face was often out of view,
 - **The oesophagus note was wrong.** It said only the lower part is modelled; the whole oesophagus is.
 - **A stray copied tool** (`tools/extract-lungs.mjs`) was removed.
 
+## Phone and tablet layouts
+
+Added 2026-10-28, the same layer as the heart lab: `src/app/layout.ts` (the layout from the screen size: `desktop`, `sheet` for phones and portrait tablets, `landscape` for phones on their side), `src/ui/Sheet.tsx` (the details as a bottom sheet with a handle: tap to step peek / half / full, drag to follow the finger, drag down or flick to close) and a "Phones and tablets" block in `src/styles.css` (safe-area insets, finger-sized controls, a mode row that scrolls sideways). Picking a structure frames it above the sheet and hides the title and mode buttons until the details close; a tap on empty space closes them too.
+
+`tests/e2e/responsive.spec.ts` (the same file in every lab) runs at 390×844, 844×390, 768×1024, 820×1180, 1024×768 and 1366×820 (touch emulation below 1024 px): no horizontal scroll; title, modes, dock and sheet on screen and not overlapping; room left for the model; finger-sized controls; the sheet folds, opens and expands by tap, keyboard and drag; the picked structure's label stays above the sheet; closing by ✕, by a tap on empty space and by dragging down (real touch events); a mode's own panel keeps the mode buttons and cannot be dismissed; every mode fits and scrolls to its end. Screenshots are in `docs/screenshots/responsive/`.
+
+**Result (2026-10-28):** the whole GPU suite (this lab's own scenarios and the layout checks), installed Chrome, AMD Radeon integrated GPU: **48 passed in 4.6 min**.
+
+**Not verified:** physical phones and tablets (only Chrome's device emulation at the six sizes), notches and safe areas on a real device, multi-finger gestures, the on-screen keyboard over the search box, and Safari and Firefox.
+
 ## Not verified
 
 - **Physical devices and GPUs.** All browser tests used software WebGL. High quality was reviewed in headless screenshots with `?quality=high`; frame rate on a real laptop or phone is not measured.
